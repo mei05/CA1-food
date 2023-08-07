@@ -1,0 +1,182 @@
+#Choco Balls Ala Mei Nanda Isnaini
+
+import bpy, os
+
+def kayu(origin) :
+    verts= [(-1.5,0,0),(-1.5,3.0,0),(4,3.0,0),(4,0,0),(-1.7,-0.2,0.2),(-1.7,3.2,0.2),(4.2,3.2,0.2),(4.2,-0.2,0.2)]
+    faces = [(0,1,2,3), (3,0,4,7), (2,3,7,6), (6,2,1,5), (1,0,4,5), (4,5,6,7)]
+    me = bpy.data.meshes.new("talenan")
+    ob = bpy.data.objects.new("talenan", me)
+    bpy.context.scene.objects.link(ob)
+    me.from_pydata(verts,[],faces)
+    me.update(calc_edges=True)
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/kayu.png')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mtex = mat.texture_slots.add()
+    mtex.texture_coords = 'UV'
+    mtex.texture = cTex
+    me.materials.append(mat)
+    return
+
+def kain(origin):
+    bpy.ops.mesh.primitive_plane_add(location=origin)
+    bpy.ops.transform.resize(value=(2.4,1.5,0))
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/kain.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mtex = mat.texture_slots.add()
+    mtex.texture_coords = 'GLOBAL'
+    mtex.texture = cTex
+    plane = bpy.context.object
+    meshplane = plane.data
+    meshplane.materials.append(mat)
+    return
+    
+def pinggir_piring(origin):
+    bpy.ops.mesh.primitive_torus_add(major_radius=1.3, minor_radius=0.05, major_segments=1200, minor_segments=800, location=origin)
+    bpy.ops.object.shade_smooth()
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/metal.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mtex = mat.texture_slots.add()
+    mtex.texture = cTex
+    mattex = mat.texture_slots.add()
+    mattex.texture = cTex
+    mattex.texture_coords = 'ORCO'
+    mattex.use_map_color_diffuse = True
+    mattex.use_map_color_emission = True
+    mattex.emission_color_factor = 0
+    mattex.use_map_density = True
+    mattex.mapping = 'FLAT'
+    torus = bpy.context.object
+    meshplane = torus.data
+    meshplane.materials.append(mat)
+    return
+
+def piring(origin):
+    bpy.ops.mesh.primitive_cylinder_add(vertices=200, radius=1.3, end_fill_type="NGON", depth=0.05, view_align=True, enter_editmode=False, location=origin)
+    bpy.ops.object.shade_smooth()
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/metal.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mtex = mat.texture_slots.add()
+    mtex.texture = cTex
+    mattex = mat.texture_slots.add()
+    mattex.texture = cTex
+    mattex.texture_coords = 'ORCO'
+    mattex.use_map_color_diffuse = True
+    mattex.use_map_color_emission = True
+    mattex.emission_color_factor = 0
+    mattex.use_map_density = True
+    mattex.mapping = 'FLAT'
+    cylinder = bpy.context.object
+    meshplane = cylinder.data
+    meshplane.materials.append(mat)
+    return
+
+def balls1(origin):
+    bpy.ops.mesh.primitive_torus_add(major_radius=0, minor_radius=1.0, major_segments=2000, minor_segments=800, location=origin)
+    bpy.ops.transform.resize(value=(0.4,0.4,0.4))
+    bpy.ops.object.shade_smooth()
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/coklat1.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mattex = mat.texture_slots.add()
+    mattex.texture = cTex
+    mattex.texture_coords = 'GLOBAL'
+    mattex.use_map_color_diffuse = True
+    mattex.use_map_color_emission = True
+    mattex.emission_color_factor = 0
+    mattex.use_map_density = True
+    mattex.mapping = 'FLAT'
+    torus = bpy.context.object
+    meshplane = torus.data
+    meshplane.materials.append(mat)
+
+    return
+
+def balls2(origin):
+    bpy.ops.mesh.primitive_torus_add(major_radius=0, minor_radius=1.0, major_segments=2000, minor_segments=800, location=origin)
+    bpy.ops.transform.resize(value=(0.4,0.4,0.4))
+    bpy.ops.object.shade_smooth()
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/wchoco2.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mattex = mat.texture_slots.add()
+    mattex.texture = cTex
+    mattex.texture_coords = 'GLOBAL'
+    mattex.use_map_color_diffuse = True
+    mattex.use_map_color_emission = True
+    mattex.emission_color_factor = 0
+    mattex.use_map_density = True
+    mattex.mapping = 'FLAT'
+    torus = bpy.context.object
+    meshplane = torus.data
+    meshplane.materials.append(mat)
+
+    return
+
+def balls3(origin):
+    bpy.ops.mesh.primitive_torus_add(major_radius=0, minor_radius=1.0, major_segments=2000, minor_segments=800, location=origin)
+    bpy.ops.transform.resize(value=(0.4,0.4,0.4))
+    bpy.ops.object.shade_smooth()
+    realpath = os.path.expanduser('E:\MeiNanda_CA1/coklat2.jpg')
+    try:
+        img = bpy.data.images.load(realpath)
+    except:
+        raise NameError("Cannot load image %s" % realpath)
+    cTex = bpy.data.textures.new('ColorTex', type = 'IMAGE')
+    cTex.image = img
+    mat = bpy.data.materials.new('TexMat')
+    mattex = mat.texture_slots.add()
+    mattex.texture = cTex
+    mattex.texture_coords = 'GLOBAL'
+    mattex.use_map_color_diffuse = True
+    mattex.use_map_color_emission = True
+    mattex.emission_color_factor = 0
+    mattex.use_map_density = True
+    mattex.mapping = 'FLAT'
+    torus = bpy.context.object
+    meshplane = torus.data
+    meshplane.materials.append(mat)
+
+    return
+    
+kayu((0,0,0))
+kain((1.0,1.5,0.21))
+pinggir_piring((2.5,1.5,0.23))
+piring((2.5,1.5,0.23))
+balls1((2.7,1.0,0.6))
+balls2((3.0,1.6,0.6))
+balls3((2.3,2.0,0.6))
